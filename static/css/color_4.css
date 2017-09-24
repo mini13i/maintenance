@@ -1,0 +1,120 @@
+/* Style for Colors */
+
+a:hover{
+	color: #ee3b37;
+	text-decoration: none;
+}
+
+.roboto_font{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400; 
+}
+
+.text_color{
+	color: #ee3b37;
+}
+
+.content_btn:hover{
+	color: #ee3b37;
+}
+
+.price_btn_action:hover{
+	color: #ee3b37;
+}
+
+.background_color{
+	background-color: #ee3b37;
+}
+
+.portfolio_navigation_list a.active{
+	color: #ee3b37;
+}
+
+.portfolio_navigation_list a:hover{
+	color: #ee3b37;
+}
+
+.link_hoverw:hover{
+	color: #ee3b37;
+	text-decoration: none;
+}
+
+.link_hoverb:hover{
+	color: #ee3b37;
+	text-decoration: none;
+	background-color: white;
+}
+
+.white_btn_hover:hover{
+	color: #ee3b37;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+.about_3 .current{
+	color: #ee3b37;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+.company_img_block:hover .company_img_desc{
+	color: #ee3b37;
+}
+
+.navsticky .nav .open>a, .navsticky .nav .open>a:hover, .navsticky .nav .open>a:focus,
+.navsticky .dropdown-menu>li>a:hover, .navsticky .dropdown-menu>li>a:focus,
+.navsticky .nav>li>a:hover, .navsticky .nav>li>a:focus, .nav>li.current>a{
+	color: #ee3b37;
+	background-color: transparent;
+}
+
+.widget_title{
+	border-color: #ee3b37;
+}
+
+.tags_widget ul li a:hover{
+	color: #ee3b37;
+	background: #333333;
+	text-decoration: none;
+}
+
+#twitterfeed .tweet_text a, #twitterfeed .tweet_text .at{
+	color: #ee3b37;
+}
+
+.readmore_link:hover{
+	text-decoration: none;
+	color: #ee3b37;
+}
+
+.service_1 .service_icon:hover, .service_3 .service_icon:hover{
+	background-color: #ee3b37;
+	border: solid 1px #ee3b37;
+}
+
+.skill_bar{
+	background-color: #ee3b37;
+}
+
+#icons .fa-hover:hover{
+	text-decoration: none;
+	color: #ee3b37;
+}
+
+button:hover{
+	color: #ee3b37;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+#slides_background_home .slides-container .solid_bg{
+	background:#ee3b37 center fixed ;
+}
+
+
+.loader {
+  border-left: 1.1em solid #ee3b37;
+}

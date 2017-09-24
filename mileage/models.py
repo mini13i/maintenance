@@ -4,7 +4,7 @@ from django.db import models
 class Mileages(models.Model):
     date = models.DateField()
     meter = models.FloatField()
-    mileage = models.FloatField()
+    mileage = models.FloatField(default=0)
     amount = models.FloatField()
     price = models.PositiveSmallIntegerField()
     brand = models.CharField(max_length=100)
@@ -18,3 +18,8 @@ class Mileages(models.Model):
             models.Index(fields=['mileage']),
             models.Index(fields=['shop']),
         ]
+
+    def __str__(self):
+        return "{0} {1}".format(self.date.strftime("%Y/%m/%d"), self.meter)
+        
+    list_display = (date, meter)

@@ -1,0 +1,120 @@
+/* Style for Colors */
+
+a:hover{
+	color: #1cafda;
+	text-decoration: none;
+}
+
+.roboto_font{
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400; 
+}
+
+.text_color{
+	color: #1cafda;
+}
+
+.content_btn:hover{
+	color: #1cafda;
+}
+
+.price_btn_action:hover{
+	color: #1cafda;
+}
+
+.background_color{
+	background-color: #1cafda;
+}
+
+.portfolio_navigation_list a.active{
+	color: #1cafda;
+}
+
+.portfolio_navigation_list a:hover{
+	color: #1cafda;
+}
+
+.link_hoverw:hover{
+	color: #1cafda;
+	text-decoration: none;
+}
+
+.link_hoverb:hover{
+	color: #1cafda;
+	text-decoration: none;
+	background-color: white;
+}
+
+.white_btn_hover:hover{
+	color: #1cafda;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+.about_3 .current{
+	color: #1cafda;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+.company_img_block:hover .company_img_desc{
+	color: #1cafda;
+}
+
+.navsticky .nav .open>a, .navsticky .nav .open>a:hover, .navsticky .nav .open>a:focus,
+.navsticky .dropdown-menu>li>a:hover, .navsticky .dropdown-menu>li>a:focus,
+.navsticky .nav>li>a:hover, .navsticky .nav>li>a:focus, .nav>li.current>a{
+	color: #1cafda;
+	background-color: transparent;
+}
+
+.widget_title{
+	border-color: #1cafda;
+}
+
+.tags_widget ul li a:hover{
+	color: #1cafda;
+	background: #333333;
+	text-decoration: none;
+}
+
+#twitterfeed .tweet_text a, #twitterfeed .tweet_text .at{
+	color: #1cafda;
+}
+
+.readmore_link:hover{
+	text-decoration: none;
+	color: #1cafda;
+}
+
+.service_1 .service_icon:hover, .service_3 .service_icon:hover{
+	background-color: #1cafda;
+	border: solid 1px #1cafda;
+}
+
+.skill_bar{
+	background-color: #1cafda;
+}
+
+#icons .fa-hover:hover{
+	text-decoration: none;
+	color: #1cafda;
+}
+
+button:hover{
+	color: #1cafda;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+#slides_background_home .slides-container .solid_bg{
+	background:#1cafda center fixed ;
+}
+
+
+.loader {
+  border-left: 1.1em solid #1cafda;
+}
