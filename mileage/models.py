@@ -10,6 +10,7 @@ class Mileages(models.Model):
     brand = models.CharField(max_length=100)
     shop = models.CharField(max_length=100, null=True, blank=True)
     comment = models.CharField(max_length=255, null=True, blank=True)
+    create_at = models.DateTimeField(auto_now=True)
     last_update = models.DateTimeField(auto_now=True)
 
     class Meta:
