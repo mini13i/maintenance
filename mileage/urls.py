@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^get_mileages$', views.get_mileages),
+    url(r'^get_mileages/(?P<car_id>[0-9]+)$', views.get_mileages),
 ]
 
 router = routers.DefaultRouter()

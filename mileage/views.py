@@ -1,23 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 from django.template import loader
 from rest_framework import viewsets, filters
-from .models import Mileages
-from .serializer import MileagesSerializer
+from .models import Mileages, Car
+from .serializer import MileagesSerializer, CarSerializer
 from datetime import datetime as dt
 from datetime import date
 import django_filters
 
 # Create your views here.
 def index(request):
-    context = {}
+    cars = Car.objects.all()
+    context = {'car':cars}
     return render(request, 'mileage/index.html', context)
 
 # Create your views here.
-def get_list(request):
-    items = Mileages.objects.order_by('date')
-    item_last = Mileages.objects.order_by('-date')[0]
+def get_list(request, car_id):
+    items = Mileages.objects.filter(model__exact=car_id).order_by('date')
+    item_last = Mileages.objects.filter(model__exact=car_id).order_by('-date')[0]
     meter_all_diff = item_last.meter - items[0].meter
     amount_all = 0
     mileages = []
@@ -41,12 +42,13 @@ def get_list(request):
         'amount' : amount,
     }
     return JsonResponse(context)
-#    return render(request, 'mileage/index.html', context)
 
 
-def get_mileages(request):
-    items = Mileages.objects.order_by('date')
-    item_last = Mileages.objects.order_by('-date')[0]
+def get_mileages(request, car_id):
+    print("%s"%car_id)
+    items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter", "mileage", "amount").order_by('date')
+    print(items)
+    item_last = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter").order_by('-date')[0]
     current_year = int(dt.now().strftime("%Y"))
     meter_all_diff = item_last.meter - items[0].meter
     amount_all = 0
@@ -56,6 +58,7 @@ def get_mileages(request):
     mileages_year = []
     dates_year = []
     last_year = int(items[0].date.strftime("%Y"))
+    print("%d"%last_year)
     for i in range(1,len(items)-1):
         date_strs = items[i].date.strftime("%Y/%m/%d").split("/")
         if int(date_strs[0]) > last_year:
@@ -85,6 +88,10 @@ def get_mileages(request):
         'years' : years,
     }
     return JsonResponse(context)
+
+class CarViewSet(viewsets.ModelViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
 
 class MileagesViewSet(viewsets.ModelViewSet):
     queryset = Mileages.objects.all()
