@@ -17,8 +17,8 @@ def index(request):
 
 # Create your views here.
 def get_list(request, car_id):
-    items = Mileages.objects.filter(model__exact=car_id).order_by('date')
-    item_last = Mileages.objects.filter(model__exact=car_id).order_by('-date')[0]
+    items = Mileages.objects.filter(model__exact=int(car_id)).order_by('date')
+    item_last = Mileages.objects.filter(model__exact=int(car_id)).order_by('-date')[0]
     meter_all_diff = item_last.meter - items[0].meter
     amount_all = 0
     mileages = []
@@ -43,11 +43,8 @@ def get_list(request, car_id):
     }
     return JsonResponse(context)
 
-
 def get_mileages(request, car_id):
-    print("%s"%car_id)
     items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter", "mileage", "amount").order_by('date')
-    print(items)
     item_last = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter").order_by('-date')[0]
     current_year = int(dt.now().strftime("%Y"))
     meter_all_diff = item_last.meter - items[0].meter
@@ -58,7 +55,6 @@ def get_mileages(request, car_id):
     mileages_year = []
     dates_year = []
     last_year = int(items[0].date.strftime("%Y"))
-    print("%d"%last_year)
     for i in range(1,len(items)-1):
         date_strs = items[i].date.strftime("%Y/%m/%d").split("/")
         if int(date_strs[0]) > last_year:
@@ -86,6 +82,21 @@ def get_mileages(request, car_id):
         'mileages' : mileages,
         'average' : mileage_average,
         'years' : years,
+    }
+    return JsonResponse(context)
+
+def update_mileages(request, car_id):
+    items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter", "mileage", "amount").order_by('date')
+    for i in range(1,len(items)-1):
+        print(items[i].date)
+        meter_diff = items[i].meter - items[i-1].meter
+        update_item = Mileages.objects.get(pk=items[i].id)
+        #update_item.create_at = dt.now()
+        #update_item.last_update = dt.now()
+        update_item.mileage = meter_diff / items[i].amount
+        update_item.save()
+    context = {
+        'Done' : True,
     }
     return JsonResponse(context)
 

@@ -14,6 +14,7 @@ class MileagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mileages
         fields = (
+            'model',
             'date',
             'meter',
             'mileage',
