@@ -2,22 +2,15 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
 
     <!-- CSS Files
         ========================================================================= --> 
-    <link href="{% static 'css/reset.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link href="{% static 'css/color_3.css' %}" rel="stylesheet">
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
-    <link href="{% static 'css/jquery.bxslider.css' %}" rel="stylesheet">
-    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.min.css' %}" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,73 +21,79 @@
 </head>
 
 <body>
-  <div id="home">
-    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <div class="container main">
-      {% block content %}{% endblock %}
-    </div>
-  </div>
-
-        <!-- menu
-        ========================================================================= -->
-    <div class="menu_white1">
-      <div class="navsticky">
-        <nav class="navbar navbar-topaz" role="navigation">
-          <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                  <a href="#about" class="dropdown-toggle" data-toggle="dropdown">HELLO <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="index.html" class="linkz_transition">Full Image Background</a></li>
-                    <li><a href="index_2.html" class="linkz_transition">Full Parallax Slider</a></li>
-                    <li><a href="index_3.html" class="linkz_transition">Full Video Background</a></li>
-                  </ul>
-                </li>
-                <li><a href="#team">TEAM</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li class="dropdown">
-                  <a href="#portfolio" class="dropdown-toggle" data-toggle="dropdown">PORTFOLIO <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="portfolio-item-1.html" class="linkz_transition">Portfolio Item 1</a></li>
-                    <li><a href="portfolio-item-2.html" class="linkz_transition">Portfolio Item 2</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#blog" class="dropdown-toggle" data-toggle="dropdown">BLOG <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="blog-masonry-3-columns.html" class="linkz_transition">Blog - Masonry 3 Cols</a></li>
-                    <li><a href="blog-masonry-2-columns.html" class="linkz_transition">Blog - Masonry 2 Cols</a></li>
-                    <li><a href="blog-masonry-2-columns-sidebar.html" class="linkz_transition">Blog - Masonry 2 Cols + Sidebar</a></li>
-                    <li><a href="blog.html" class="linkz_transition">Blog - Regular Layout</a></li>
-                    <li><a href="blog-single.html" class="linkz_transition">Blog - Single</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#testimonials" class="dropdown-toggle" data-toggle="dropdown">ELEMENTS <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="contact.html" class="linkz_transition">Contact Sections</a></li>
-                    <li><a href="testimonial.html" class="linkz_transition">Tetimonial Sections</a></li>
-                  </ul>
-                </li>
-                <li><a href="#contact">CONTACT</a></li>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="https://bootswatch.com/" class="navbar-brand">Bootswatch</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="https://bootswatch.com/united/#" id="themes">Themes <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="https://bootswatch.com/default/">Default</a></li>
+                <li class="divider"></li>
+                <li><a href="https://bootswatch.com/cerulean/">Cerulean</a></li>
+                <li><a href="https://bootswatch.com/cosmo/">Cosmo</a></li>
               </ul>
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container -->
-        </nav>
+            </li>
+            <li>
+              <a href="https://bootswatch.com/help/">Help</a>
+            </li>
+            <li>
+              <a href="http://news.bootswatch.com/">Blog</a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="https://bootswatch.com/united/#" id="download">United <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="download">
+                <li><a href="https://jsfiddle.net/bootswatch/cvLkpsx0/">Open Sandbox</a></li>
+                <li><a href="https://bootswatch.com/united/_bootswatch.scss">_bootswatch.scss</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+          </ul>
+
+        </div>
       </div>
     </div>
+
+
+    <div class="container">
+      <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+      <!-- Plugins for Bootstrap -->
+      <!-- script src="js/bootstrap.min.js"></script-->
+      <!-- Jquery Appear -->
+      <!-- script src="js/jquery.appear.js"></script-->
+
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div>
+            <h1>United</h1>
+            <p class="lead">Ubuntu orange and unique font</p>
+	    <div>
+		{% block content %}{% endblock %}
+            </div>
+          </div>
+	</div>
+      </div>
+    </div>
+
+  <footer>
+    <div class="footer3">
+      <div class="container text-center">
+	COPYRIGHT &copy; 2017 - aka-minnie.com
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>

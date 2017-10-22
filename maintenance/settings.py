@@ -31,13 +31,13 @@ ALLOWED_HOSTS = ["localhost","*.aka-minnie.com"]
 # Application definition
 
 INSTALLED_APPS = [
-    'mileage.apps.MileageConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mileage.apps.MileageConfig',
     'rest_framework',
     'bootstrapform',
     'bootstrap3',
@@ -124,7 +124,26 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+#PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+#STATIC_ROOT = ''
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join('static'), )
+
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'handlers': {
+#        'console': {
+#            'level': 'DEBUG',
+#            'class': 'logging.StreamHandler',
+#        },
+#    },
+#    'loggers': {
+#        'django.db.backends': {
+#            'handlers': ['console'],
+#            'level': 'DEBUG',
+#        },
+#    },
+#}
+#
