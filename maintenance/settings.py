@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'bootstrapform',
     'bootstrap3',
 ]
@@ -123,5 +124,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = ( os.path.join('static'), )
