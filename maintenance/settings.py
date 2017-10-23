@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'bootstrapform',
     'bootstrap3',
+    'accounts',
 ]
 
 MIDDLEWARE = [
