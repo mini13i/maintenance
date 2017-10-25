@@ -57,7 +57,7 @@ def get_mileages(request, car_id):
     mileages_year = [] # その年の燃費
     dates_year = []    # その年の給油日
     last_year = int(items[0].date.strftime("%Y"))
-    for i in range(1,len(items)-1):
+    for i in range(1,len(items)):
         date_strs = items[i].date.strftime("%Y/%m/%d").split("/")
         # 年が変わったら過去1年分をリストに加える
         if int(date_strs[0]) > last_year:
@@ -90,12 +90,10 @@ def get_mileages(request, car_id):
 @login_required
 def update_mileages(request, car_id):
     items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter", "mileage", "amount").order_by('date')
-    for i in range(1,len(items)-1):
-        print(items[i].date)
+    for i in range(1,len(items)):
+        #print(items[i].date)
         meter_diff = items[i].meter - items[i-1].meter
         update_item = Mileages.objects.get(pk=items[i].id)
-        #update_item.create_at = dt.now()
-        #update_item.last_update = dt.now()
         update_item.mileage = meter_diff / items[i].amount
         update_item.save()
     context = {
