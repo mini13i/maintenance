@@ -3,19 +3,14 @@
 {% block title %}Mileages{% endblock %}
 {% block content %}
 <script type="text/javascript" src="{% static 'js/plotly.v1.30.0.min.js' %}"></script>
-<form action="#" method="POST">
-  {% csrf_token %}
-  <select name="car" id="car" onChange="get_mileages_graph()">
+  <select class="form-control" name="car" id="car" onChange="get_mileages_graph()">
     <option value="">-- Select Car --</option>
     {% for c in car %}
     <option value={{ c.id }}>{{ c.model }}</option>
     {% endfor %}
   </select>
-</form>
 <div id="graph"></div>
 <div id="list"></div>
-{{ result }}
-{{ mileage }}
 <script type="text/javascript">
   'use strict';
   function get_mileages_graph(){
@@ -38,18 +33,18 @@
 	      title : "Milages",
 	      xaxis : {
 		  tickvals : [
-		      "2017-01-15",
-		      "2017-02-15",
-		      "2017-03-15",
-		      "2017-04-15",
-		      "2017-05-15",
-		      "2017-06-15",
-		      "2017-07-15",
-		      "2017-08-15",
-		      "2017-09-15",
-		      "2017-10-15",
-		      "2017-11-15",
-		      "2017-12-15",
+		      "{{ current }}-01-15",
+		      "{{ current }}-02-15",
+		      "{{ current }}-03-15",
+		      "{{ current }}-04-15",
+		      "{{ current }}-05-15",
+		      "{{ current }}-06-15",
+		      "{{ current }}-07-15",
+		      "{{ current }}-08-15",
+		      "{{ current }}-09-15",
+		      "{{ current }}-10-15",
+		      "{{ current }}-11-15",
+		      "{{ current }}-12-15",
 		  ],
 		  ticktext : [
 		      "Jan",

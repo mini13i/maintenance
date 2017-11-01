@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Input refueling info.{% endblock %}
+{% block content %}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.ja.min.js"></script>
+
+
+{% if error_message %}
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+  <strong>{{ error_message }}</strong>
+</div>
+{% endif %}
+
+<form class="form-horizontal" action="#" method="POST">
+  <fieldset>
+    {% csrf_token %}
+    <label>給油情報追加</label>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">車種</label>
+      <div class="col-lg-10">
+	<select name="car" id="car" class="form-control" >
+	  <option value="">-- Select Car --</option>
+	  {% for c in car %}
+	  <option value={{ c.id }}>{{ c.model }}</option>
+	  {% endfor %}
+	</select>
+      </div>
+      <label class="col-lg-2 control-label">日付</label>
+      <div id="datepicker-default">
+	<div class="col-sm-9" style="width:100%">
+	  <div class="input-group date">
+	    <input type="text" class="form-control" value="{{ today }}" />
+	    <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+	    </div>
+	  </div>
+	</div>
+	<script type="text/javascript">
+    'use strict';
+    $(function(){
+	//Default
+	$('#datepicker-default .date').datepicker({
+            format: "yyyy年mm月dd日",
+            language: 'ja'
+	});
+    });
+	</script>
+      </div>
+      <label class="col-lg-2 control-label">メーター</label>
+      <div class="col-lg-10">
+	<input class="form-control" name="meter" type="number" step="0.1" value="" />
+      </div>
+      <label class="col-lg-2 control-label">給油量</label>
+      <div class="col-lg-10">
+	<input class="form-control" name="amount" type="number" value="" />
+      </div>
+      <label class="col-lg-2 control-label">価格</label>
+      <div class="col-lg-10">
+	<input class="form-control" name="price" type="number" value="" />
+      </div>
+      <label class="col-lg-2 control-label">ブランド</label>
+      <div class="col-lg-10">
+	<select class="form-control" name="brand" id="brand">
+	  <option value="">-- Select brand --</option>
+	  {% for b in brand %}
+	  <option value={{ b }}>{{ b }}</option>
+	  {% endfor %}
+	</select>
+      </div>
+      <label class="col-lg-2 control-label">ショップ</label>
+      <div class="col-lg-10">
+	<input class="form-control" name="shop" type="text" value="" />
+      </div>
+      <label class="col-lg-2 control-label">コメント</label>
+      <div class="col-lg-10">
+	<input class="form-control" name="comment" type="text" value="" />
+      </div>
+      <label class="col-lg-2 control-label"></label>
+      <div class="col-lg-10">
+	<div class="btn-toolbar">
+	  <input class="btn btn-default" name="submit" type="submit" value="OK" />
+	  <input class="btn btn-default" name="reset" type="reset" value="Reset" />
+	</div>
+      </div>
+    </div>
+  <fieldset>
+</form>
+
+{% endblock %}
