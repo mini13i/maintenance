@@ -22,17 +22,12 @@ def update_mileages(request, car_id):
 
 @login_required(login_url="/login/")
 def input_new_refueling(request):
-    cars = Car.objects.all()
-    today = dt.now().strftime("%Y年%m月%d日")
-    brands = sorted(Mileages.objects.values_list('brand', flat=True).distinct())
-    context = {
-        'today': today,
-        'brand': brands,
-        'car': cars,
-    }
-    return render(request,
-                  "mileage/refueling.html",
-                  context)
+    return Mileages.input_new_refueling(request)
+
+@login_required(login_url="/login/")
+def add_refueling(request):
+    m = Mileages()
+    return m.add_refueling(request)
 
 # 給油情報をリストで出力
 def get_list(request, car_id):

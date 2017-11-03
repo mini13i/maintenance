@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime as dt
 from datetime import date
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 from django.http.response import JsonResponse
 
 class Car(models.Model):
@@ -97,3 +98,109 @@ class Mileages(models.Model):
             'Done' : True,
         }
         return JsonResponse(context)
+
+    def input_new_refueling(request):
+        """給油情報入力画面"""
+        cars = Car.objects.all()
+        today = dt.now().strftime("%Y年%m月%d日")
+        brands = sorted(Mileages.objects.values_list('brand', flat=True).distinct())
+        context = {
+            'error': "",
+            'brand': brands,
+            'car': cars,
+            'input': {
+                'car': "",
+                'date': today,
+                'meter': "",
+                'amount': "",
+                'brand': "",
+                'price': "",
+                'shop': "",
+                'comment': "",
+            }
+        }
+        return render(request,
+                      "mileage/refueling.html",
+                      context)
+
+    def add_refueling(self, request):
+        """入力された情報をDBに格納する"""
+        error = ""
+        item_last = None
+        input_date = None
+        diff = None
+        if int(request.POST.get('car')) <= 0:
+            error = "車種を選択してください"
+        elif request.POST.get('date') == '':
+            error = "日付を選択してください"
+        elif request.POST.get('meter') == '':
+            error = "ODメーターを入力してください"
+        elif request.POST.get('brand') == '':
+            error = "ブランドを入力してください"
+        elif request.POST.get('amount') == '':
+            error = "給油量を入力してください"
+        elif request.POST.get('price') == '':
+            error = "価格を入力してください"
+        if len(error) <= 0:
+            item_last = Mileages.objects.filter(model__exact=int(request.POST.get('car'))).only("meter", "date").order_by('-date')[0]
+            input_date = dt.strptime(request.POST.get('date'), "%Y年%m月%d日")
+            diff = float(request.POST.get('meter')) - item_last.meter
+            if item_last.date > input_date.date():
+                error = "日付が前回の給油日より前です"
+            if diff <= 0:
+                error = "ODメーターが前回の給油時より古いです"
+        if len(error) <= 0:
+            car = Car.objects.get(pk=int(request.POST.get('car')))
+            refueling = Mileages()
+            refueling.model = car
+            refueling.date = input_date
+            refueling.meter = float(request.POST.get('meter'))
+            mileage = diff / float(request.POST.get('amount'))
+            refueling.mileage = mileage
+            refueling.amount = float(request.POST.get('amount'))
+            refueling.price = int(request.POST.get('price'))
+            refueling.brand = request.POST.get('brand')
+            refueling.shop = request.POST.get('shop')
+            refueling.comment = request.POST.get('comment')
+            #refueling. = 
+            refueling.save()
+        
+            context = {
+                'input': {
+                    'car': car.model,
+                    'date': request.POST.get('date'),
+                    'meter': request.POST.get('meter'),
+                    'amount': request.POST.get('amount'),
+                    'mileage': mileage,
+                    'price': request.POST.get('price'),
+                    'brand': request.POST.get('brand'),
+                    'shop': request.POST.get('shop'),
+                    'comment': request.POST.get('comment'),
+                }
+            }
+            return render(request,
+                          "mileage/result.html",
+                          context)
+        else:
+            cars = Car.objects.all()
+            today = dt.now().strftime("%Y年%m月%d日")
+            brands = sorted(Mileages.objects.values_list('brand', flat=True).distinct())
+            context = {
+                'error': error,
+                'today': today,
+                'brand': brands,
+                'car': cars,
+                'input': {
+                    'car': int(request.POST.get('car')),
+                    'date': request.POST.get('date'),
+                    'meter': request.POST.get('meter'),
+                    'amount': request.POST.get('amount'),
+                    'price': request.POST.get('price'),
+                    'brand': request.POST.get('brand'),
+                    'shop': request.POST.get('shop'),
+                    'comment': request.POST.get('comment'),
+                }
+            }
+            return render(request,
+                          "mileage/refueling.html",
+                          context)
