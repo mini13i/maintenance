@@ -10,7 +10,10 @@ from django.contrib.auth.decorators import login_required
 # 
 def index(request):
     cars = Car.objects.all()
-    context = {'car':cars}
+    context = {
+        'car': cars,
+        'current' : dt.now().strftime('%Y'),
+    }
     return render(request, 'mileage/index.html', context)
 
 def get_mileages(request, car_id):
