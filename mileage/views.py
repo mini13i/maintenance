@@ -34,8 +34,8 @@ def add_refueling(request):
 
 # 給油情報をリストで出力
 def get_list(request, car_id):
-    items = Mileages.objects.filter(model__exact=int(car_id)).order_by('date')
-    item_last = Mileages.objects.filter(model__exact=int(car_id)).order_by('-date')[0]
+    items = Mileages.objects.filter(model__exact=int(car_id)).order_by('id', 'date')
+    item_last = Mileages.objects.filter(model__exact=int(car_id)).order_by('-id', '-date')[0]
     meter_all_diff = item_last.meter - items[0].meter
     amount_all = 0
     mileages = []

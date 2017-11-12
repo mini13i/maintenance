@@ -4,6 +4,8 @@ from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from django.http.response import JsonResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 class Car(models.Model):
     model = models.CharField(max_length=100)
@@ -42,9 +44,9 @@ class Mileages(models.Model):
         """
         燃費をJSON形式で渡す
         """
-        items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "mileage", "amount").order_by('date')
-        item_first = Mileages.objects.filter(model__exact=int(car_id)).only("meter").order_by('date')[0]
-        item_last = Mileages.objects.filter(model__exact=int(car_id)).only("meter").order_by('-date')[0]
+        items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "mileage", "amount").order_by('id', 'date')
+        item_first = Mileages.objects.filter(model__exact=int(car_id)).only("meter").order_by('id', 'date')[0]
+        item_last = Mileages.objects.filter(model__exact=int(car_id)).only("meter").order_by('-id', '-date')[0]
         current_year = int(dt.now().strftime("%Y"))
         meter_all_diff = item_last.meter - item_first.meter # 総走行距離
         amount_all = 0 # 総給油量
@@ -87,7 +89,7 @@ class Mileages(models.Model):
 
 #    @method_decorator(login_required)
     def update_mileages(request, car_id):
-        items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter", "mileage", "amount").order_by('date')
+        items = Mileages.objects.filter(model__exact=int(car_id)).only("date", "meter", "mileage", "amount").order_by('id','date')
         for i in range(1,len(items)):
             #print(items[i].date)
             meter_diff = items[i].meter - items[i-1].meter
@@ -142,7 +144,7 @@ class Mileages(models.Model):
         elif request.POST.get('price') == '':
             error = "価格を入力してください"
         if len(error) <= 0:
-            item_last = Mileages.objects.filter(model__exact=int(request.POST.get('car'))).only("meter", "date").order_by('-date')[0]
+            item_last = Mileages.objects.filter(model__exact=int(request.POST.get('car'))).only("meter", "date").order_by('-id', '-date')[0]
             input_date = dt.strptime(request.POST.get('date'), "%Y年%m月%d日")
             diff = float(request.POST.get('meter')) - item_last.meter
             if item_last.date > input_date.date():
@@ -164,14 +166,14 @@ class Mileages(models.Model):
             refueling.comment = request.POST.get('comment')
             #refueling. = 
             refueling.save()
-        
+            #return HttpResponseRedirect('/mileage/mileages/%d'%(refueling.id))
             context = {
                 'input': {
                     'car': car.model,
                     'date': request.POST.get('date'),
                     'meter': request.POST.get('meter'),
                     'amount': request.POST.get('amount'),
-                    'mileage': mileage,
+                    'mileage': "%0.2f"%mileage,
                     'price': request.POST.get('price'),
                     'brand': request.POST.get('brand'),
                     'shop': request.POST.get('shop'),
