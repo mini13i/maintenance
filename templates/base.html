@@ -39,16 +39,17 @@
             <li>
               <a href="/mileage/add">給油情報追加</a>
             </li>
-	    <!--
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
-                <li><a href="https://bootswatch.com/default/">Default</a></li>
-                <li class="divider"></li>
-                <li><a href="https://bootswatch.com/cerulean/">Cerulean</a></li>
+                <li>
+                  <a href="/mileage/">燃費</a>
+                </li>
+                <li>
+                  <a href="/mileage/add">給油情報追加</a>
+                </li>
               </ul>
             </li>
-	    -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
 	    {% if request.user.is_authenticated %}
