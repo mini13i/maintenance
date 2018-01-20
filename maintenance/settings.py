@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#)k!p#a1!_96@fv9e@x!5gd97vfb-z$g44dt0tbd541p_09nw%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost","www.aka-minnie.com"]
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'bootstrap3',
     'accounts',
+    'letsencrypt',
 ]
 
 MIDDLEWARE = [
@@ -131,20 +132,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join('static'), )
 
-#LOGGING = {
-#    'version': 1,
-#    'disable_existing_loggers': False,
-#    'handlers': {
-#        'console': {
-#            'level': 'DEBUG',
-#            'class': 'logging.StreamHandler',
-#        },
-#    },
-#    'loggers': {
-#        'django.db.backends': {
-#            'handlers': ['console'],
-#            'level': 'DEBUG',
-#        },
-#    },
-#}
-#
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+
