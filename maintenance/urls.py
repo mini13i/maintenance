@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^logout/$', auth.views.logout,
         {'template_name': 'accounts/logged_out.html'}),
     url(r'^$', views.index),
-    url(r'^\.well-known/', include('letsencrypt.urls'))
+#    url(r'^\.well-known/', include('letsencrypt.urls'))
 ]
