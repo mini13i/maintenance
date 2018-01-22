@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'bootstrap3',
     'accounts',
-    'letsencrypt',
+#    'letsencrypt',
 ]
 
 MIDDLEWARE = [
