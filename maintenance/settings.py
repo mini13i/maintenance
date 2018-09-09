@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -129,7 +128,7 @@ USE_TZ = False
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 #PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 #STATIC_ROOT = ''
-STATIC_URL = '/static/'
+STATIC_URL = '/static_files/'
 STATICFILES_DIRS = ( os.path.join('static'), )
 
 LOGGING = {
@@ -149,3 +148,4 @@ LOGGING = {
     },
 }
 
+GOOGLE_ANALYTICS_TRACKING_ID="UA-125408623-1"
