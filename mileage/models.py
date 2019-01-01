@@ -53,6 +53,7 @@ class Mileages(models.Model):
         mileages = []  # 各年の燃費
         dates = []     # 各年の給油日
         years = []     # 各年の年
+        year_org = ''
         mileages_year = [] # その年の燃費
         dates_year = []    # その年の給油日
         last_year = int(items[0].date.strftime("%Y"))
@@ -68,13 +69,14 @@ class Mileages(models.Model):
                 mileages_year = []
                 dates_year = []
             # 同じ年で揃える
+            year_org = date_strs[0]
             date_strs[0] = str(current_year)
             items[i].date = "-".join(date_strs) + " 00:00:00"
             dates_year.append(items[i].date)
             mileages_year.append(items[i].mileage)
             amount_all += items[i].amount
         if len(mileages_year) > 0:
-            years.append(date_strs[0])
+            years.append(year_org)
             mileages.append(mileages_year)
             dates.append(dates_year)
         mileage_average = meter_all_diff / amount_all
